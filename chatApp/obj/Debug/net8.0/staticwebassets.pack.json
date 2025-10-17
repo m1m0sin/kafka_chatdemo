@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/home/sigfr/documents/dotnetlab/chatApp/wwwroot/js/chat.js",
+      "PackagePath": "staticwebassets/js/chat.js"
+    },
+    {
+      "Id": "/home/sigfr/documents/dotnetlab/chatApp/wwwroot/js/signalr/dist/browser/signalr.js",
+      "PackagePath": "staticwebassets/js/signalr/dist/browser/signalr.js"
+    },
+    {
       "Id": "/home/sigfr/documents/dotnetlab/chatApp/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
