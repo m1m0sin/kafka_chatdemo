@@ -23,19 +23,19 @@
     <div class="card" id="login">
         <div class="card-body">
             <h3 class="card-title">Unirse al chat</h3>
-            <form>
+            <div>
                 <div class="form-group mb-2">
                     <label for="username">Tu nombre</label>
                     <input id="username" class="form-control" placeholder="Ingresa tu nombre" autocomplete="off" />
                 </div>
                 <button type="button" id="joinChat" class="btn btn-primary">Unirse al chat</button>
-            </form>
+            </div>
         </div>
     </div>
 
     <div class="card" id="chat">
         <div class="card-header">
-            <h3>Chat en tiempo real</h3>
+            <h3>Chat en tiempo real - <span id="usernameTitle"></span></h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-8">
                     <h4>Enviar mensajes:</h4>
-                    <form class="mb-2">
+                    <div class="mb-2">
                         <div class="input-group">
                             <select class="form-control" id="toUser"></select>
                             <input class="form-control mr-sm-2" id="message" placeholder="Mensaje..." autocomplete="off" />
@@ -54,7 +54,7 @@
                                 <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="sendMessage">Enviar</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                     <h4>Mensajes recibidos:</h4>
                     <div class="card">
                         <div class="card-body">

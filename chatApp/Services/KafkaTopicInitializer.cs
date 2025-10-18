@@ -33,8 +33,8 @@ public class KafkaTopicInitializer : IKafkaTopicInitializer
                 topicsToCreate.Add(new TopicSpecification
                 {
                     Name = topic,
-                    NumPartitions = 3,
-                    ReplicationFactor = 3
+                    NumPartitions = _settings.NumPartitions,
+                    ReplicationFactor = _settings.ReplicationFactor
                 });
             }
         }
@@ -44,7 +44,7 @@ public class KafkaTopicInitializer : IKafkaTopicInitializer
 
         if (topicsToCreate.Any())
         {
-            Console.WriteLine($"🪴 Creando topics Kafka: {string.Join(", ", topicsToCreate.Select(t => t.Name))}");
+            Console.WriteLine($"Creando topics Kafka: {string.Join(", ", topicsToCreate.Select(t => t.Name))}");
             try
             {
                 await adminClient.CreateTopicsAsync(topicsToCreate);

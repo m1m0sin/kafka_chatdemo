@@ -14,12 +14,12 @@ builder.Services.AddSingleton<IKafkaTopicInitializer, KafkaTopicInitializer>();
 
 var app = builder.Build();
 
-/*
+
 using (var scope = app.Services.CreateScope())
 {
     var topicInit = scope.ServiceProvider.GetRequiredService<IKafkaTopicInitializer>();
     await topicInit.EnsureTopicsExistAsync();
-}*/
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

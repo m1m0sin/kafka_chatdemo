@@ -30,8 +30,10 @@ public class ChatHub : Hub
         ConnectedUsers[connectionId] = userName;
         UserConnections[userName] = connectionId;
 
+        var chatMessage = new ChatMessage { FromUser = userName, ToUser = "", Message = $"{userName} has joined the chat", Type = ChatMessageType.Connected };
+
         // Notifica a todos que un nuevo usuario entró
-        await Clients.All.SendAsync("UserConnected", userName, UserConnections.Keys);
+        await kafkaProducer.ProduceAsync(chatMessage);
 
         return true;
     }
@@ -41,7 +43,8 @@ public class ChatHub : Hub
         if (ConnectedUsers.TryRemove(Context.ConnectionId, out var userName))
         {
             UserConnections.TryRemove(userName, out _);
-            await Clients.All.SendAsync("UserDisconnected", userName, UserConnections.Keys);
+            var chatMessage = new ChatMessage { FromUser = userName, ToUser = "", Message = $"{userName} just left the chat", Type = ChatMessageType.Disconnected };
+            await kafkaProducer.ProduceAsync(chatMessage);
         }
 
         await base.OnDisconnectedAsync(exception);
@@ -49,7 +52,7 @@ public class ChatHub : Hub
 
     public async Task SendMessageToAll(string user, string message)
     {
-        var chatMessage = new ChatMessage { FromUser = user, ToUser = "", Message = message };
+        var chatMessage = new ChatMessage { FromUser = user, ToUser = "", Message = message, Type = ChatMessageType.Message };
         await kafkaProducer.ProduceAsync(chatMessage);
     }
 
@@ -57,19 +60,19 @@ public class ChatHub : Hub
     {
         if (UserConnections.TryGetValue(toUser, out var connectionId))
         {
-            var chatMessage = new ChatMessage { FromUser = fromUser, ToUser = toUser, Message = message };
+            var chatMessage = new ChatMessage { FromUser = fromUser, ToUser = toUser, Message = message, Type = ChatMessageType.Message };
             await kafkaProducer.ProduceAsync(chatMessage);
         }
     }
 
-    public static string? GetConnectionId(string user)
+    public static async Task<string?> GetConnectionId(string user)
     {
         UserConnections.TryGetValue(user, out var connectionId);
-        return connectionId;
+        return await Task.FromResult(connectionId);
     } 
 
-    public Task<List<string>> GetActiveUsers()
+    public static async Task<List<string>> GetActiveUsers()
     {
-        return Task.FromResult(UserConnections.Keys.ToList());
+        return await Task.FromResult(UserConnections.Keys.ToList());
     }
 }

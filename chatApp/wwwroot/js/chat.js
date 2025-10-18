@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage(`🔴 ${user} salió del chat`);
     });
 
-    connection.on("ReceiveMessage", (user, message) => {
+    connection.on("ReceivePublicMessage", (user, message) => {
         appendMessage(`💬 ${user}: ${message}`);
     });
 
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentUser = name;
         document.getElementById("login").style.display = "none";
         document.getElementById("chat").style.display = "block";
+        document.getElementById("usernameTitle").innerText = name;
 
         const users = await connection.invoke("GetActiveUsers");
         updateUserList(users);
