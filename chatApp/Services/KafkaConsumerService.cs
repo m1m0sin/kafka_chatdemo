@@ -26,7 +26,7 @@ public class KafkaConsumerService : BackgroundService, IKfakaConsumerService
         var config = new ConsumerConfig
         {
             BootstrapServers = _settings.BootstrapServers,
-            GroupId = "chat-consumer-group",
+            GroupId = $"chat-consumer-group",
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoCommit = true
         };
@@ -90,14 +90,5 @@ public class KafkaConsumerService : BackgroundService, IKfakaConsumerService
             _consumer?.Dispose();
             Console.WriteLine("Consumidor Kafka cerrado correctamente.");
         }
-    }
-
-    public override async Task StopAsync(CancellationToken cancellationToken)
-    {
-        Console.WriteLine("Deteniendo KafkaConsumerService...");
-        _consumer?.Close();
-        _consumer?.Dispose();
-        await base.StopAsync(cancellationToken);
-        Console.WriteLine("KafkaConsumerService detenido correctamente.");
     }
 }
