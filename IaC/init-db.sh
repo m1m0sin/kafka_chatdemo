@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
 check_status() {
-  CONTAINER="connect"
+  CONTAINER="postgres"
 
   STATUS=$(podman inspect --format '{{.State.Status}}' "$CONTAINER")
 
@@ -24,10 +23,4 @@ check_status() {
 
 check_status
 
-#Crear/Actualizar el JDBC Sink
-curl -sS -X PUT http://localhost:8083/connectors/jdbc-sink-orders/config \
-  -H "Content-Type: application/json" \
-  --data-binary @jdbc-sink-orders.json
-
-# Estado
-curl -sS http://localhost:8083/connectors/jdbc-sink-orders/status
+podman exec -i postgres bash -lc "psql -U demo -d demo -h localhost" < init-db.sql

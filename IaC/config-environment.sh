@@ -2,6 +2,10 @@
 
 set -e  # Detiene la ejecución si un comando falla
 
+dispose_containers() {
+    podman-compose down --volumes --remove-orphans
+}
+
 setup_containers() {
     podman-compose up -d
 }
@@ -11,43 +15,38 @@ install_jdbc_connector() {
     ./init-jdbc-connector.sh
 }
 
-init_orders() {
+init_db() {
     echo "Inicializando la base de datos"
-    ./init-orders.sh
-}
-
-init_ordersschema() {
-    echo "Creando topicos y enviando mensajes a Kafka..."
-    ./ordersschema.sh
+    ./init-db.sh
 }
 
 config_jdbc_connector() {
     echo "Configurando el conector JDBC para consumir los mensajes de kafka y almancenarlos en la base de datos..."
-    ./jdbc-sink-orders.sh
+    ./jdbc-sink-chat-messages.sh
 }
 
-query_orders() {
+query_db() {
     echo "Querying data..."
-    ./query-orders.sh
+    ./query-db.sh
 }
 
 main() {
+    dispose_containers
+    sleep 5
+
     setup_containers
     sleep 5
 
     install_jdbc_connector
     sleep 5
 
-    init_orders
-    sleep 5
-
-    init_ordersschema
+    init_db
     sleep 5
 
     config_jdbc_connector
     sleep 5
 
-    query_orders
+    query_db
 }
 
 main

@@ -1,0 +1,1 @@
+SELECT * from public.chat_messages;

@@ -43,7 +43,16 @@ public class KafkaConsumerService : BackgroundService, IKfakaConsumerService
                     var cr = _consumer.Consume(stoppingToken);
                     if (cr?.Message?.Value == null) continue;
 
-                    var msg = JsonSerializer.Deserialize<ChatMessage>(cr.Message.Value);
+                    using var doc = JsonDocument.Parse(cr.Message.Value);
+                    JsonElement root = doc.RootElement;
+
+                    ChatMessage? msg = null;
+
+                    if (root.TryGetProperty("payload", out var payload))
+                    {
+                        msg = JsonSerializer.Deserialize<ChatMessage>(payload.GetRawText());
+                    }
+
                     if (msg == null) continue;
 
                     var toConn = await ChatHub.GetConnectionId(msg.ToUser!);

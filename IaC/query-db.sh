@@ -21,4 +21,4 @@ check_status() {
 }
 
 check_status
-podman exec -i postgres bash -lc "psql -U demo -d demo -h localhost" < query-orders.sql
+podman exec -i postgres bash -lc "psql -U demo -d demo -h localhost" < query-db.sql
