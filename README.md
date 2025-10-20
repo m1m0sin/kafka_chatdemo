@@ -84,7 +84,7 @@ Esto realizara las siguientes tareas:
 
 - Inicializar los contenedores:
     - `zookeeper`
-    - `broker`
+    - `kafka`
     - `connect`
     - `postgres`
 - Instalar el conector JDBC para POSTGRES.
