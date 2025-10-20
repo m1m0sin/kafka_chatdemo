@@ -32,8 +32,8 @@ La arquitectura está compuesta por los siguientes servicios:
 +----------------------+
 |     Apache Kafka     |
 |----------------------|
-|  Broker + Zookeeper  |
-|  Kafka Connect       |
+|  Kafka + Zookeeper   |
+|      Connect         |
 +----------+-----------+
            |
            v
