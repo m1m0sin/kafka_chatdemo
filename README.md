@@ -53,15 +53,16 @@ La arquitectura está compuesta por los siguientes servicios:
 
 ```
 /IaC
+ ├── config-environment.sh         # Script para levantar y configurar la infraestructura.
  ├── init-db.sql                   # Script de inicialización de la base de datos
  ├── jdbc-sink-chat-messages.json  # Configuración del conector JDBC Sink
- ├── jdbc-sink-chat-messages.sh    # Script de despliegue del conector
  ├── podman-compose.yml            # Definición de los contenedores
 /chatApp
  ├── DAO/                          # Modelos de datos
  ├── Hubs/                         # Implementación SignalR
  ├── Services/                     # Productor y consumidor Kafka
  ├── Program.cs                    # Punto de entrada de la aplicación
+ ├── appsettings.json              # Configuración de la aplicación de Chat
 ```
 
 ## Instrucciones para levantar los ambientes
