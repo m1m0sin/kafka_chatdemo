@@ -69,8 +69,8 @@ La arquitectura está compuesta por los siguientes servicios:
 
 ### Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/chatApp.git
-cd chatApp
+git clone https://github.com/m1m0sin/kafka_chatdemo.git
+cd kafka_chatdemo
 ```
 
 ### Levantar la infraestructura
