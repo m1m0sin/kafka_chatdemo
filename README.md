@@ -20,29 +20,7 @@ Antes de iniciar, asegúrate de tener instalados los siguientes componentes:
 
 La arquitectura está compuesta por los siguientes servicios:
 
-```
-+--------------------+
-|   WebApp (.NET)    |
-|--------------------|
-| Produce/Consume    |
-| mensajes vía Kafka |
-+---------+----------+
-          |
-          v
-+----------------------+
-|     Apache Kafka     |
-|----------------------|
-|  Kafka + Zookeeper   |
-|      Connect         |
-+----------+-----------+
-           |
-           v
-+----------------------+
-|     PostgreSQL       |
-|----------------------|
-|  Tabla: chat_messages|
-+----------------------+
-```
+![Arquitectura de la solución](resources/chatAppArchitecture.jpg)
 
 ### Flujo general
 1. El usuario envía un mensaje desde la aplicación .NET.
