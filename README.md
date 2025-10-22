@@ -96,6 +96,7 @@ Desde el directorio `/IaC`:
 ```
 
 ## Autor
-**Tito Peralta**  
+**Tito Peralta**
+tperaltab@dian.gov.co  
 _Caso de estudio: Chat en tiempo real utilizando Kafka_
 
