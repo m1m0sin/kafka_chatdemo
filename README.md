@@ -95,6 +95,31 @@ Desde el directorio `/IaC`:
 ./query-db.sh
 ```
 
+### Capturas de pantalla
+1. **Configuración del entorno**:
+![Configuración del entorno](resources/screenshot_01_console.png)
+
+2. **Inicio de sesión en el Chat**:
+![Inicio de sesión en el Chat](resources/screenshot_02_chatui_login.png)
+
+3. **Intercambio de mensajes en el Chat**:
+![Intercambio de mensajes en el Chat](resources/screenshot_03_chatui_messages.png)
+
+4. **Brokers en Kafka**:
+![Brokers en Kafka](resources/screenshot_06_kafka_brokers.png)
+
+5. **Topics en Kafka**:
+![Topics en Kafka](resources/screenshot_04_kafka_topics.png)
+
+6. **Mensajes en Kafka**:
+![Mensajes en Kafka](resources/screenshot_07_kafka_messages.png)
+
+7. **Consumidores en Kafka**:
+![Consumidores en Kafka](resources/screenshot_05_kafka_consumers.png)
+
+8. **Registros en base de datos**:
+![Registros en base de datos](resources/screenshot_08_postgress_db.png)
+
 ## Autor
 **Tito Peralta**
 tperaltab@dian.gov.co  
